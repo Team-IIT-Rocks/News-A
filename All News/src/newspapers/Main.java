@@ -6,8 +6,16 @@ import java.util.List;
 public class Main {
   
 	public static void main(String[] args) {
-		INewspaper newspaper=new BDNews24();
-		newspaperTest(new ProthomAlo());
+		newspaperTest(new BangladeshToday());
+		/*INewspaper newspaper=new BangladeshToday();
+		List<Headline>headlines =newspaper.getALLBusinessHeadlines();
+		for (Headline headline : headlines) {
+			System.out.println(headline.getHeading()+" "+headline.getUrl());
+			System.out.println(newspaper.getBusinessNews(headline));
+
+		}
+		System.out.println(newspaper.getSportsNews(headlines.get(0)));
+*/		//newspaperTest(new IttefaqBangla());
 		/*INewspaper newspaper=new TheDailyStar();
 		List<Headline>headlines =newspaper.getAllSportsHeadLines();
 		//System.out.println(newspaper.getSportsNews(headlines.get(1)));
