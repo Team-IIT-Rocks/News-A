@@ -1,0 +1,3 @@
+1425194368163	Encapsulate field 'Heading'
+1425194389132	Encapsulate field 'Url'
+1425195127028	Extract method 'connectToTheWebpage'

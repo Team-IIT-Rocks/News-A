@@ -12,92 +12,77 @@ import org.jsoup.select.Elements;
 
 public class TheDailyStar implements INewspaper {
 
-	public String Url;
-	private String SportsUrl = "http://www.thedailystar.net/sports";
+	private Document connectToTheWebpage(String baseUrl) {
+		Document document = null;
+		try {
+			document = Jsoup.connect(baseUrl).timeout(10 * 1000).get();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return document;
+	}
 
 	private List<Headline> getHeadlines(String baseUrl) {
 		List<Headline> headlines = new ArrayList<Headline>();
-		Document document = null;
-		try {
-			document = Jsoup.connect(baseUrl).get();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		Document document = connectToTheWebpage(baseUrl);
+
 		Elements elements = document.select("body a");
 
 		for (org.jsoup.nodes.Element element : elements) {
 			if (element.attr("href").startsWith(baseUrl + "/")) {
-//				 System.out.println(element.nodeName()+" "+element.attr("href")+" "+element.text());
-				Headline headline = new Headline();
-				headline.Heading = element.text();
-				headline.Url = element.attr("href");
+				Headline headline = new Headline(element.text(),
+						element.attr("href"));
 				headlines.add(headline);
 			}
 		}
 		return headlines;
 	}
-	
-	
-	private String getNews(Headline headline)
-	{
-		Document document = null;
-		try {
-			document = Jsoup.connect(headline.Url).get();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// System.out.println(document.getElementById("content").text());
 
+	private String getNews(Headline headline) {
+		Document document = connectToTheWebpage(headline.getUrl());
 		return document.getElementById("content").text().toString();
 	}
 
 	@Override
 	public List<Headline> getAllSportsHeadLines() {
-		
+
 		return getHeadlines("http://www.thedailystar.net/sports");
 	}
 
 	@Override
 	public String getSportsNews(Headline headline) {
-		
+
 		return getNews(headline);
 	}
 
 	@Override
 	public List<Headline> getALLPoliticalHeadlines() {
-		// TODO Auto-generated method stub
 		return getHeadlines("http://bd.thedailystar.net/country");
 	}
 
 	@Override
 	public String getPoliticalNews(Headline headline) {
-		// TODO Auto-generated method stub
 		return getNews(headline);
 	}
 
 	@Override
 	public List<Headline> getALLEntertainmentHeadlines() {
-		// TODO Auto-generated method stub
 		return getHeadlines("http://www.thedailystar.net/entertainment");
 	}
 
 	@Override
 	public String getEntertainmentNews(Headline headline) {
-		// TODO Auto-generated method stub
 		return getNews(headline);
 	}
 
 	@Override
 	public List<Headline> getALLBusinessHeadlines() {
-		// TODO Auto-generated method stub
 		return getHeadlines("http://www.thedailystar.net/business");
 	}
 
 	@Override
 	public String getBusinessNews(Headline headline) {
-		// TODO Auto-generated method stub
 		return getNews(headline);
 	}
 

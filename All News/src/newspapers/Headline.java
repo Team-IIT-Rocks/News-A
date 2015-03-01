@@ -1,7 +1,20 @@
 package newspapers;
 
 public class Headline {
-    
-	public String Heading;
-	public String Url;
+
+	public Headline(String heading, String url) {
+		Heading = heading;
+		Url = url;
+	}
+
+	public String getHeading() {
+		return Heading;
+	}
+
+	public String getUrl() {
+		return Url;
+	}
+
+	private String Heading;
+	private String Url;
 }
