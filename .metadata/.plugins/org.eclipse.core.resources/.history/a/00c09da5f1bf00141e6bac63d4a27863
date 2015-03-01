@@ -7,7 +7,7 @@ public class Main {
   
 	public static void main(String[] args) {
 		INewspaper newspaper=new BDNews24();
-		newspaperTest(new ProthomAlo());
+		newspaperTest(newspaper);
 		/*INewspaper newspaper=new TheDailyStar();
 		List<Headline>headlines =newspaper.getAllSportsHeadLines();
 		//System.out.println(newspaper.getSportsNews(headlines.get(1)));

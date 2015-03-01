@@ -25,9 +25,9 @@ public class Main {
 
 	private static void newspaperTest(INewspaper newspaper) {
 		List<Headline>headlines=newspaper.getAllSportsHeadLines();
-		/*for (Headline headline : headlines) {
+		for (Headline headline : headlines) {
 			System.out.println(headline.getHeading()+" "+headline.getUrl());
-		}*/
+		}
 		System.out.println(newspaper.getSportsNews(headlines.get(0)));
 		
 		headlines =newspaper.getALLBusinessHeadlines();

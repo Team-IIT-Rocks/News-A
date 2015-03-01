@@ -2,3 +2,5 @@
 1425194389132	Encapsulate field 'Url'
 1425195127028	Extract method 'connectToTheWebpage'
 1425199862144	Extract method 'newspaperTest'
+1425200923208	Extract local variable 'elementUrl'
+1425201046892	Rename local variable 'elementUrl'
