@@ -40,5 +40,8 @@ public class Main {
 		System.out.println(newspaper.getPoliticalNews(headlines.get(0)));
 	}
 	
-	
+	public void test(INewspaper newspaper) {
+		
+		
+	}
 }
