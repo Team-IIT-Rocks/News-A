@@ -29,11 +29,11 @@ public class ProthomAlo implements INewspaper{
 
 		for (org.jsoup.nodes.Element element : elements) {
 			
-			String absoluteUrlOfElement = "http://en.prothom-alo.com/"+element.attr("href");
+			String elementAbsoluteUrl = "http://en.prothom-alo.com/"+element.attr("href");
 			
-			if (absoluteUrlOfElement.startsWith(baseUrl) && !absoluteUrlOfElement.equals(baseUrl)) {
+			if (elementAbsoluteUrl.startsWith(baseUrl) && !elementAbsoluteUrl.equals(baseUrl)) {
 				Headline headline = new Headline(element.text(),
-						absoluteUrlOfElement);
+						elementAbsoluteUrl);
 				headlines.add(headline);
 			}
 		}

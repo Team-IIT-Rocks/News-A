@@ -4,3 +4,4 @@
 1425199862144	Extract method 'newspaperTest'
 1425200923208	Extract local variable 'elementUrl'
 1425201046892	Rename local variable 'elementUrl'
+1425201233924	Rename local variable 'elementAbsoluteUrl'
