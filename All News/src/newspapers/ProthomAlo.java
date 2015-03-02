@@ -1,26 +1,15 @@
 package newspapers;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-public class ProthomAlo implements INewspaper{
+public class ProthomAlo extends Newspaper{
 
-	private Document connectToTheWebpage(String baseUrl) {
-		Document document = null;
-		try {
-			document = Jsoup.connect(baseUrl).timeout(10 * 1000).get();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return document;
-	}
-
-	private List<Headline> getHeadlines(String baseUrl) {
+	@Override
+	protected List<Headline> getHeadlines(String baseUrl) {
 		List<Headline> headlines = new ArrayList<Headline>();
 
 		Document document = connectToTheWebpage(baseUrl);
@@ -40,7 +29,7 @@ public class ProthomAlo implements INewspaper{
 		return headlines;
 	}
 
-	private String getNews(Headline headline) {
+	protected String getNews(Headline headline) {
 		Document document = connectToTheWebpage(headline.getUrl());
 		
 		return document.getElementsByAttributeValue("itemprop", "articleBody").text();
@@ -48,49 +37,24 @@ public class ProthomAlo implements INewspaper{
 
 	@Override
 	public List<Headline> getAllSportsHeadLines() {
-		// TODO Auto-generated method stub
 		return getHeadlines("http://en.prothom-alo.com/sports");
 	}
 
-	@Override
-	public String getSportsNews(Headline headline) {
-		// TODO Auto-generated method stub
-		return getNews(headline);
-	}
 
 	@Override
 	public List<Headline> getALLPoliticalHeadlines() {
-		// TODO Auto-generated method stub
 		return getHeadlines("http://en.prothom-alo.com/bangladesh");
 	}
 
 	@Override
-	public String getPoliticalNews(Headline headline) {
-		// TODO Auto-generated method stub
-		return getNews(headline);
-	}
-
-	@Override
 	public List<Headline> getALLEntertainmentHeadlines() {
-		// TODO Auto-generated method stub
 		return getHeadlines("http://en.prothom-alo.com/entertainment");
 	}
 
-	@Override
-	public String getEntertainmentNews(Headline headline) {
-		// TODO Auto-generated method stub
-		return getNews(headline);
-	}
 
 	@Override
 	public List<Headline> getALLBusinessHeadlines() {
-		// TODO Auto-generated method stub
 		return getHeadlines("http://en.prothom-alo.com/economy");
 	}
 
-	@Override
-	public String getBusinessNews(Headline headline) {
-		// TODO Auto-generated method stub
-		return getNews(headline);
-	}
 }

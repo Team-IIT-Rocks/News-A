@@ -1,28 +1,17 @@
 package newspapers;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.text.html.parser.Element;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-public class TheDailyStar implements INewspaper {
+public class TheDailyStar extends Newspaper {
 
-	private Document connectToTheWebpage(String baseUrl) {
-		Document document = null;
-		try {
-			document = Jsoup.connect(baseUrl).timeout(10 * 1000).get();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return document;
-	}
-
-	private List<Headline> getHeadlines(String baseUrl) {
+	@Override
+	protected List<Headline> getHeadlines(String baseUrl) {
 		List<Headline> headlines = new ArrayList<Headline>();
 
 		Document document = connectToTheWebpage(baseUrl);
@@ -39,7 +28,8 @@ public class TheDailyStar implements INewspaper {
 		return headlines;
 	}
 
-	private String getNews(Headline headline) {
+	@Override
+	protected String getNews(Headline headline) {
 		Document document = connectToTheWebpage(headline.getUrl());
 		return document.getElementById("content").text().toString();
 	}
@@ -51,19 +41,8 @@ public class TheDailyStar implements INewspaper {
 	}
 
 	@Override
-	public String getSportsNews(Headline headline) {
-
-		return getNews(headline);
-	}
-
-	@Override
 	public List<Headline> getALLPoliticalHeadlines() {
 		return getHeadlines("http://bd.thedailystar.net/country");
-	}
-
-	@Override
-	public String getPoliticalNews(Headline headline) {
-		return getNews(headline);
 	}
 
 	@Override
@@ -72,18 +51,9 @@ public class TheDailyStar implements INewspaper {
 	}
 
 	@Override
-	public String getEntertainmentNews(Headline headline) {
-		return getNews(headline);
-	}
-
-	@Override
 	public List<Headline> getALLBusinessHeadlines() {
 		return getHeadlines("http://www.thedailystar.net/business");
 	}
 
-	@Override
-	public String getBusinessNews(Headline headline) {
-		return getNews(headline);
-	}
 
 }

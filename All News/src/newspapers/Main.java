@@ -31,7 +31,7 @@ public class Main {
 	   */
 	}
 
-	private static void newspaperTest(INewspaper newspaper) {
+	private static void newspaperTest(Newspaper newspaper) {
 		List<Headline>headlines=newspaper.getAllSportsHeadLines();
 		/*for (Headline headline : headlines) {
 			System.out.println(headline.getHeading()+" "+headline.getUrl());

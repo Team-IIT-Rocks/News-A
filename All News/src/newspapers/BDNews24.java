@@ -1,27 +1,16 @@
 package newspapers;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class BDNews24 implements INewspaper{
+public class BDNews24 extends Newspaper{
 
-	private Document connectToTheWebpage(String baseUrl) {
-		Document document = null;
-		try {
-			document = Jsoup.connect(baseUrl).timeout(10 * 1000).get();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return document;
-	}
-
-	private List<Headline> getHeadlines(String baseUrl) {
+	@Override
+	protected List<Headline> getHeadlines(String baseUrl) {
 		List<Headline> headlines = new ArrayList<Headline>();
 
 		Document document = connectToTheWebpage(baseUrl);
@@ -38,7 +27,8 @@ public class BDNews24 implements INewspaper{
 		return headlines;
 	}
 
-	private String getNews(Headline headline) {
+	@Override
+	protected String getNews(Headline headline) {
 		Document document = connectToTheWebpage(headline.getUrl());
 		
 		return document.getElementsByClass("print-only").text();
@@ -46,39 +36,22 @@ public class BDNews24 implements INewspaper{
 
 	@Override
 	public List<Headline> getAllSportsHeadLines() {
-		// TODO Auto-generated method stub
 		return getHeadlines("http://bdnews24.com/sport/");
 	}
 
-	@Override
-	public String getSportsNews(Headline headline) {
-		// TODO Auto-generated method stub
-		return getNews(headline);
-	}
+	
 
 	@Override
 	public List<Headline> getALLPoliticalHeadlines() {
-		// TODO Auto-generated method stub
 		return getHeadlines("http://bdnews24.com/politics/");
 	}
 
-	@Override
-	public String getPoliticalNews(Headline headline) {
-		// TODO Auto-generated method stub
-		return getNews(headline);
-	}
 
 	@Override
 	public List<Headline> getALLEntertainmentHeadlines() {
-		// TODO Auto-generated method stub
 		return getHeadlines("http://bdnews24.com/entertainment/");
 	}
 
-	@Override
-	public String getEntertainmentNews(Headline headline) {
-		// TODO Auto-generated method stub
-		return getNews(headline);
-	}
 
 	@Override
 	public List<Headline> getALLBusinessHeadlines() {
@@ -86,10 +59,5 @@ public class BDNews24 implements INewspaper{
 		return getHeadlines("http://bdnews24.com/business/");
 	}
 
-	@Override
-	public String getBusinessNews(Headline headline) {
-		// TODO Auto-generated method stub
-		return getNews(headline);
-	}
 
 }
