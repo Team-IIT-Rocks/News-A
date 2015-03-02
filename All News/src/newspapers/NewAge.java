@@ -9,19 +9,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class NewAge implements INewspaper{
+public class NewAge extends Newspaper{
 
-	private Document connectToTheWebpage(String baseUrl) {
-		Document document = null;
-		try {
-			document = Jsoup.connect(baseUrl).timeout(10 * 1000).get();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return document;
-	}
 
-	private List<Headline> getHeadlines(String baseUrl) {
+	protected List<Headline> getHeadlines(String baseUrl) {
 		List<Headline> headlines = new ArrayList<Headline>();
 
 		Document document = connectToTheWebpage(baseUrl);
@@ -40,7 +31,7 @@ public class NewAge implements INewspaper{
 		return headlines;
 	}
 
-	private String getNews(Headline headline) {
+	protected String getNews(Headline headline) {
 		Document document = connectToTheWebpage(headline.getUrl());
 		
 		return document.select("body p").get(0).text();
