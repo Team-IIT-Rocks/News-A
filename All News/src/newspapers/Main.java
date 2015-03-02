@@ -6,7 +6,8 @@ import java.util.List;
 public class Main {
   
 	public static void main(String[] args) {
-		newspaperTest(new NewAge());
+		testDailySun(new TheDailySun());
+		//newspaperTest(new NewAge());
 		/*INewspaper newspaper=new BangladeshToday();
 		List<Headline>headlines =newspaper.getALLBusinessHeadlines();
 		for (Headline headline : headlines) {
@@ -50,5 +51,11 @@ public class Main {
 		System.out.println(headlines.get(0).getHeading());
 	}
 	
-	
+	private static void testDailySun(Newspaper newspaper){
+		List<Headline> headlines = newspaper.getALLBusinessHeadlines();
+		for (Headline headline : headlines) {
+			String news = newspaper.getNews(headline);
+			System.out.println(news);
+		}
+	}
 }
