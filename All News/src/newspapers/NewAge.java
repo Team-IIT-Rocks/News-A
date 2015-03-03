@@ -42,12 +42,6 @@ public class NewAge extends Newspaper{
 	}
 
 
-	@Override
-	public String getSportsNews(Headline headline) {
-		// TODO Auto-generated method stub
-		
-		return getNews(headline);
-	}
 	
 	@Override
 	public List<Headline> getALLPoliticalHeadlines() {
@@ -55,32 +49,20 @@ public class NewAge extends Newspaper{
 		return getHeadlines("http://newagebd.net/category/politics/");
 	}
 
-	@Override
-	public String getPoliticalNews(Headline headline) {
-		// TODO Auto-generated method stub
-		return getNews(headline);
-	}
+	
 	
 	@Override
 	public List<Headline> getALLEntertainmentHeadlines() {
 		// TODO Auto-generated method stub
 		return getHeadlines("http://newagebd.net/category/entertain/");
 	}
-	@Override
-	public String getEntertainmentNews(Headline headline) {
-		// TODO Auto-generated method stub
-		return getNews(headline);
-	}
+	
 
 	@Override
 	public List<Headline> getALLBusinessHeadlines() {
 		// TODO Auto-generated method stub
 		return getHeadlines("http://newagebd.net/category/bizn/");
 	}
-	@Override
-	public String getBusinessNews(Headline headline) {
-		// TODO Auto-generated method stub
-		return getNews(headline);
-	}
+	
 	
 }
