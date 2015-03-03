@@ -38,7 +38,7 @@ public abstract class Newspaper {
 	protected Document connectToTheWebpage(String baseUrl) {
 		Document document = null;
 		try {
-			document = Jsoup.connect(baseUrl).timeout(10 * 1000).get();
+			document = Jsoup.connect(baseUrl).timeout(10 * 10000000).get();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

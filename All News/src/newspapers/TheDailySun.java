@@ -39,11 +39,17 @@ public class TheDailySun extends Newspaper{
 		Document document = connectToTheWebpage(baseUrl);
 		Elements elements = document.getElementsByAttributeValue("class", "col-lg-8 col-xs-8").select("a");
 		
+		Set<String> headlineUrls = new HashSet<String>();
+		
 		for (Element element : elements) {
-			Headline headline = new Headline(element.text(), element.attr("href"));
-			headlines.add(headline);
+			if(!headlineUrls.contains(element.attr("href"))){
+				headlineUrls.add(element.attr("href"));
+				Headline headline = new Headline(element.text(), element.attr("href"));
+				headlines.add(headline);
+			}
+			
 		}
-		headlines = getUniqueHeadlines(headlines);
+		headlineUrls.clear();
 		
 		return headlines;
 	}
@@ -58,15 +64,6 @@ public class TheDailySun extends Newspaper{
 			return "This page contains no description.";
 		}
 		
-	}
-	
-	private List<Headline> getUniqueHeadlines(List<Headline> headlines){
-		Set<Headline> headlineSet = new HashSet<Headline>(headlines);
-		headlines = new ArrayList<Headline>();
-		
-		headlines.addAll(headlineSet);
-		
-		return headlines;
 	}
 
 }
