@@ -43,7 +43,7 @@ public class TheDailySun extends Newspaper{
 			Headline headline = new Headline(element.text(), element.attr("href"));
 			headlines.add(headline);
 		}
-		headlines = handleSameHeadlines(headlines);
+		headlines = getUniqueHeadlines(headlines);
 		
 		return headlines;
 	}
@@ -60,7 +60,7 @@ public class TheDailySun extends Newspaper{
 		
 	}
 	
-	private List<Headline> handleSameHeadlines(List<Headline> headlines){
+	private List<Headline> getUniqueHeadlines(List<Headline> headlines){
 		Set<Headline> headlineSet = new HashSet<Headline>(headlines);
 		headlines = new ArrayList<Headline>();
 		
