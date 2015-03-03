@@ -43,10 +43,7 @@ public class TheDailySun extends Newspaper{
 			Headline headline = new Headline(element.text(), element.attr("href"));
 			headlines.add(headline);
 		}
-		Set<Headline> headLineSet = new HashSet<Headline>(headlines);
-		
-		headlines = new ArrayList<Headline>();
-		headlines.addAll(headLineSet);
+		headlines = handleSameHeadlines(headlines);
 		
 		return headlines;
 	}
@@ -61,6 +58,15 @@ public class TheDailySun extends Newspaper{
 			return "This page contains no description.";
 		}
 		
+	}
+	
+	private List<Headline> handleSameHeadlines(List<Headline> headlines){
+		Set<Headline> headlineSet = new HashSet<Headline>(headlines);
+		headlines = new ArrayList<Headline>();
+		
+		headlines.addAll(headlineSet);
+		
+		return headlines;
 	}
 
 }
